@@ -32,6 +32,8 @@ curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
 ## Deploy
 
 ```
+yarn install
+yarn build
 apex deploy
 ```
 

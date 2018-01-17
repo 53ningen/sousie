@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended",
+    "prettier",
+    "prettier/flowtype"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 0,
+    "prettier/prettier": ["error", {
+      "printWidth": 100,
+      "singleQuote": true
+    }],
+    "comma-dangle": ["error", "never"],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": [
+      ],
+      optionalDependencies: false
+    }],
+    "class-methods-use-this": "off"
+  }
+}

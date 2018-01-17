@@ -6,7 +6,28 @@
   "author": "gomi_ningen",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "babel src -d functions",
+    "eslint": "eslint './src/**/*.js'",
+    "flow": "flow",
+    "prettier": "prettier --print-width 200 --single-quote --write './src/js/**/*.js'"
+  },
   "devDependencies": {
-    "apex-bin": "^0.10.3"
-  }
+    "apex-bin": "^0.10.3",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.41.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.5.0",
+    "eslint-plugin-react": "^7.5.1",
+    "flow-bin": "^0.63.1",
+    "prettier": "^1.10.2"
+  },
+  "dependencies": {}
 }
