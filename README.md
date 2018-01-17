@@ -1,4 +1,4 @@
-Susie
+Sousie
 ==================
 
 Website health checker working on AWS Lambda
