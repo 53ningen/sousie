@@ -1,0 +1,12 @@
+{
+  "name": "soucie",
+  "version": "1.0.0",
+  "description": "Website health checker working on AWS Lambda",
+  "main": "index.js",
+  "author": "gomi_ningen",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "apex-bin": "^0.10.3"
+  }
+}
