@@ -1,6 +1,6 @@
 // @flow
 
-import fetch from '../utils/fetch';
+import Site from '../types/Site';
 
 const targetUrl: ?string = 'https://53ningen.com';
 
@@ -10,8 +10,15 @@ exports.handle = async (e: any, ctx: any, cb: Function) => {
     return;
   }
   try {
-    await fetch(targetUrl);
-    cb(null, { is_ok: true });
+    const site = new Site(targetUrl);
+    const status = await site.getStatus();
+    const obj = {
+      is_ok: status.isSucceeded(),
+      status_code: status.statusCode,
+      response_millisec: status.responsems,
+      message: status.statusMessage
+    };
+    cb(null, obj);
   } catch (err) {
     console.log(err);
     cb(null, { is_ok: false, message: err });

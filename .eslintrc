@@ -17,6 +17,7 @@
   ],
   "rules": {
     "no-console": 0,
+    "yoda": 0,
     "prettier/prettier": ["error", {
       "printWidth": 100,
       "singleQuote": true
