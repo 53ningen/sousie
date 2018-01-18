@@ -1,13 +1,8 @@
 // @flow
 
-import https from 'https';
+import fetch from '../utils/fetch';
 
 const targetUrl: ?string = 'https://53ningen.com';
-
-const fetch = (url: string) =>
-  new Promise((resolve, reject) => {
-    https.get(url, res => resolve(res)).on('error', e => reject(e));
-  });
 
 exports.handle = async (e: any, ctx: any, cb: Function) => {
   if (targetUrl == null) {

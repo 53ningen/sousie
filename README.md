@@ -1,5 +1,6 @@
 Sousie
 ==================
+[![Build Status](https://travis-ci.org/53ningen/sousie.svg?branch=master)](https://travis-ci.org/53ningen/sousie)
 
 [WIP] Website health checker working on AWS Lambda
 

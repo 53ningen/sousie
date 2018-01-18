@@ -7,17 +7,16 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "test": "npm run prettier && npm run eslint && npm run jest",
+    "jest": "jest",
     "build": "npm run build:webpack",
     "build:prod": "NODE_ENV=production npm run build",
     "build:webpack": "webpack",
     "eslint": "eslint './src/**/*.js'",
-    "flow": "flow",
-    "prettier": "prettier --print-width 200 --single-quote --write './src/js/**/*.js'"
+    "prettier": "prettier --print-width 200 --single-quote --write './src/**/*.js'"
   },
   "devDependencies": {
-    "apex-bin": "^0.10.3",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
@@ -33,6 +32,7 @@
     "eslint-plugin-prettier": "^2.5.0",
     "eslint-plugin-react": "^7.5.1",
     "flow-bin": "^0.63.1",
+    "jest": "^22.1.2",
     "prettier": "^1.10.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0"
