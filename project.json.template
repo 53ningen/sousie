@@ -3,6 +3,5 @@
   "description": "website health checker",
   "memory": 128,
   "timeout": 5,
-  "role": "",
-  "environment": {}
+  "role": ""
 }

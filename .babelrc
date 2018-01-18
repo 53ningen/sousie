@@ -1,9 +1,9 @@
 {
   "presets": [
-    "flow"
-  ],
-  "plugins": [
-  ],
-  "env": {
-  }
+    "flow",
+    [
+      "env",
+      { "targets": { "node": "6.10.0" } }
+    ]
+  ]
 }

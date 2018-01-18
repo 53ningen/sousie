@@ -1,7 +1,7 @@
 Sousie
 ==================
 
-Website health checker working on AWS Lambda
+[WIP] Website health checker working on AWS Lambda
 
 ## Installation
 ### Install aws-cli
@@ -34,7 +34,13 @@ curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
 ```
 yarn install
 yarn build
-apex deploy
+apex deploy alive
+```
+
+## Invoke
+
+```
+apex invoke alive
 ```
 
 ## Author

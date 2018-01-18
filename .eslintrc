@@ -23,9 +23,10 @@
     "comma-dangle": ["error", "never"],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": [
+        'webpack.config.js'
       ],
       optionalDependencies: false
     }],
-    "class-methods-use-this": "off"
+    "class-methods-use-this": 0
   }
 }
