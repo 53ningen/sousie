@@ -35,7 +35,11 @@
     "jest": "^22.1.2",
     "prettier": "^1.10.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  }
 }

@@ -1,0 +1,6 @@
+{
+  "url": "https://example.com",
+  "slack_webhook_url": "https://hooks.slack.com/services/xxxxxx/xxxxxxxxx/XXXXXXXXXXX",
+  "slack_notification_channel": "#random",
+  "slack_notification_username": "Soucie"
+}

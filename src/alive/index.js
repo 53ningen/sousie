@@ -1,8 +1,18 @@
 // @flow
 
-import Site from '../types/Site';
+import Site from './Site';
+import Slack from './Slack';
+import config from '../../config.json';
 
-const targetUrl: ?string = 'https://53ningen.com';
+const targetUrl: ?string = config.url;
+const slackChannel: ?string = config.slack_notification_channel;
+const slackUsername: ?string = config.slack_notification_username;
+
+async function notifySlack() {
+  const slackWebhookUrl: ?string = config.slack_webhook_url;
+  const slack = new Slack(slackWebhookUrl || '');
+  await slack.post(slackChannel || '', slackUsername || '', 'health check failed');
+}
 
 exports.handle = async (e: any, ctx: any, cb: Function) => {
   if (targetUrl == null) {
@@ -21,6 +31,7 @@ exports.handle = async (e: any, ctx: any, cb: Function) => {
     cb(null, obj);
   } catch (err) {
     console.log(err);
-    cb(null, { is_ok: false, message: err });
+    await notifySlack();
+    cb(null, { is_ok: false, message: err.message });
   }
 };

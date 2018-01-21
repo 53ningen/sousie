@@ -6,6 +6,10 @@ export default class SiteStatus {
   statusMessage: ?string;
   responsems: ?number;
 
+  isHealthy(): boolean {
+    return this.isSucceeded();
+  }
+
   isSucceeded(): boolean {
     if (this.statusCode == null) return false;
     return 200 <= this.statusCode && this.statusCode < 300;

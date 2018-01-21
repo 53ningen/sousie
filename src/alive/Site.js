@@ -1,6 +1,6 @@
 // @flow
 
-import fetch from '../utils/fetch';
+import request from 'request-promise-native';
 import SiteStatus from './SiteStatus';
 
 export default class Site {
@@ -16,7 +16,12 @@ export default class Site {
   async getStatus(): Promise<SiteStatus> {
     const status = new SiteStatus();
     const start = new Date();
-    const { statusCode, statusMessage } = await fetch(this.url);
+    const options = {
+      method: 'GET',
+      uri: this.url,
+      resolveWithFullResponse: true
+    };
+    const { statusCode, statusMessage } = await request(options);
     status.responsems = new Date() - start;
     status.statusCode = statusCode;
     status.statusMessage = statusMessage;
