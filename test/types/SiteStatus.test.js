@@ -1,4 +1,4 @@
-import SiteStatus from '../../src/types/SiteStatus';
+import SiteStatus from '../../src/SiteStatus';
 
 describe('SiteStatus', () => {
   test('status_code 200', () => {

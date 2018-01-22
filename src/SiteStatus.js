@@ -11,7 +11,7 @@ export default class SiteStatus {
   }
 
   isSucceeded(): boolean {
-    if (this.statusCode == null) return false;
+    if (!this.statusCode) return false;
     return 200 <= this.statusCode && this.statusCode < 300;
   }
 }

@@ -15,12 +15,12 @@ export default class Site {
 
   async getStatus(): Promise<SiteStatus> {
     const status = new SiteStatus();
-    const start = new Date();
     const options = {
       method: 'GET',
       uri: this.url,
       resolveWithFullResponse: true
     };
+    const start = new Date();
     const { statusCode, statusMessage } = await request(options);
     status.responsems = new Date() - start;
     status.statusCode = statusCode;

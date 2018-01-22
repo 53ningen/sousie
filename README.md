@@ -2,9 +2,9 @@ Sousie
 ==================
 [![Build Status](https://travis-ci.org/53ningen/sousie.svg?branch=master)](https://travis-ci.org/53ningen/sousie)
 
-[WIP] Website health checker working on AWS Lambda
+Website health checker working on AWS Lambda
 
-## Installation
+## Install
 ### Install aws-cli
 
 ```
@@ -30,12 +30,24 @@ See [official document](http://apex.run/#installation)
 curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
 ```
 
+### Clone and configure
+
+```
+# git clone
+git clone git@github.com:53ningen/sousie.git
+cd sousie
+
+# configure
+cp ./config.json.template ./config.json
+vi ./config.json #=> set helth check target url
+```
+
 ## Deploy
 
 ```
 yarn install
 yarn build
-apex deploy alive
+apex deploy
 ```
 
 ## Invoke
@@ -44,9 +56,15 @@ apex deploy alive
 apex invoke alive
 ```
 
+## Test
+
+```
+yarn test
+```
+
 ## Author
 
-gomi_ningen (@53ningen)
+gomi_ningen ( @53ningen )
 
 ## License
 
