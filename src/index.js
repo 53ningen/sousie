@@ -12,8 +12,9 @@ exports.handle = async (e: any, ctx: any, cb: Function) => {
   }
 
   // health check
+  const timeoutMillisec = config.timeout_millisec;
   const site = new Site(method, url);
-  const status = await site.getStatus();
+  const status = await site.getStatus(timeoutMillisec);
 
   // slack notification
   const notifyOnSuccess = config.slack['notify-on-success'] === true;

@@ -28,22 +28,27 @@ export default class Site {
     return `${this.protocol}//${this.hostname}${port}${this.path}${this.hash || ''}`;
   }
 
-  async getStatus(): Promise<SiteStatus> {
+  async getStatus(timeoutMillisec: number = 5000): Promise<SiteStatus> {
     const status = new SiteStatus(this);
     const options = {
       method: this.method,
       uri: this.getUrl(),
+      timeout: timeoutMillisec,
       resolveWithFullResponse: true
     };
     try {
       const { statusCode, statusMessage } = await request(options);
       status.statusCode = statusCode;
-      status.statusMessage = statusMessage;
+      status.message = statusMessage;
       return status;
     } catch (err) {
       console.log(JSON.stringify(err));
-      status.statusCode = err.response.statusCode;
-      status.statusMessage = err.message;
+      if (err.response) {
+        status.statusCode = err.response.statusCode;
+        status.message = err.response.statusMessage;
+      } else {
+        status.message = err.message;
+      }
       return status;
     }
   }

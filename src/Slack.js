@@ -72,8 +72,13 @@ export default class Slack {
           },
           {
             title: 'status_code',
-            value: status.statusCode,
+            value: status.statusCode || '-',
             short: true
+          },
+          {
+            title: 'message',
+            value: status.message || '-',
+            short: false
           }
         ]
       }

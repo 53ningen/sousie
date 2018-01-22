@@ -1,6 +1,7 @@
 {
   "method": "GET",
   "url": "https://example.com",
+  "timeout_millisec": 3000,
   "slack": {
     "notify-on-success": true,
     "webhook_url": "https://hooks.slack.com/services/xxxxxx/xxxxxxxxx/XXXXXXXXXXX",
