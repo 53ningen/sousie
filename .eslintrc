@@ -19,7 +19,7 @@
     "no-console": 0,
     "yoda": 0,
     "prettier/prettier": ["error", {
-      "printWidth": 100,
+      "printWidth": 200,
       "singleQuote": true
     }],
     "comma-dangle": ["error", "never"],

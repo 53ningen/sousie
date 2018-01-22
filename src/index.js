@@ -12,11 +12,7 @@ async function notifySlack() {
   const slackWebhookUrl: ?string = config.slack_webhook_url;
   if (!slackWebhookUrl) return;
   const slack = new Slack(slackWebhookUrl);
-  await slack.post(
-    slackChannel || '#random',
-    slackUsername || 'Soucie Health Checker',
-    'health check failed'
-  );
+  await slack.post(slackChannel || '#random', slackUsername || 'Soucie Health Checker', 'health check failed');
 }
 
 exports.handle = async (e: any, ctx: any, cb: Function) => {
