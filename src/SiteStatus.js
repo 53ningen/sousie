@@ -1,10 +1,16 @@
 // @flow
 
+import Site from './Site';
+
 export default class SiteStatus {
+  site: Site;
   url: string;
   statusCode: ?number;
   statusMessage: ?string;
-  responsems: ?number;
+
+  constructor(site: Site) {
+    this.site = site;
+  }
 
   isHealthy(): boolean {
     return this.isSucceeded();
