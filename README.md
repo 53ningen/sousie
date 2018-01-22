@@ -64,6 +64,7 @@ cp ./config.json.template ./config.json
 * `method`: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`...
 * `url`: health check target url
 * `slack`(optional)
+  * `timeout_millisec`: request timeout (ms)
   * `notify-on-success`: enable success notification
   * `webhook_url`: slack incomming webhook url
   * `channel`: notification target channel (ex: `#random`)
