@@ -1,6 +1,6 @@
 {
   "name": "soucie",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Website health checker working on AWS Lambda",
   "main": "index.js",
   "author": "gomi_ningen",
