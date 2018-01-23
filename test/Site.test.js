@@ -1,4 +1,4 @@
-import Site from '../src/Site';
+import Site from 'Site';
 
 describe('Site', () => {
   test('properties: https endpoint', () => {
