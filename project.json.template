@@ -2,6 +2,6 @@
   "name": "soucie",
   "description": "website health checker",
   "memory": 128,
-  "timeout": 5,
+  "timeout": 10,
   "role": ""
 }

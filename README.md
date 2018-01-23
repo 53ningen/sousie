@@ -61,16 +61,17 @@ Copy `config.json.template` to `config.json` and edit it
 cp ./config.json.template ./config.json
 ```
 
-* `method`: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`...
-* `url`: health check target url
-* `slack`(optional)
-  * `timeout_millisec`: request timeout (ms)
-  * `notify-on-success`: enable success notification
-  * `webhook_url`: slack incomming webhook url
-  * `channel`: notification target channel (ex: `#random`)
-  * `username`: username of slack notification
-  * `icon_emoji`: user icon of slack notification
-  * `mention_targets`: if you want to receive mention, place the account of slack
+* `items`(array): health check target items
+  * `method`(string): `GET`, `POST`, `PUT`, `DELETE`, `HEAD`...
+  * `url`(string): health check target url
+  * `timeout_millisec`(number): request timeout (ms)
+* `slack`(object, optional)
+  * `notify-on-success`(boolean): enable success notification
+  * `webhook_url`(string): slack incomming webhook url
+  * `channel`(string): notification target channel (ex: `#random`)
+  * `username`(string): username of slack notification
+  * `icon_emoji`(string): user icon of slack notification
+  * `mention_targets`(array): if you want to receive mention, place the account of slack
 
 ## Deploy
 

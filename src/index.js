@@ -4,15 +4,11 @@ import Site from './Site';
 import Slack from './Slack';
 import config from '../config.json';
 
-exports.handle = async (e: any, ctx: any, cb: Function) => {
-  const { method, url } = config;
-  if (!url || !method) {
-    cb(null, { is_ok: false, message: 'config.method or config.url is not set.' });
-    return;
-  }
-
+async function handle(item: Object): Promise<Object> {
+  const { method, url } = item;
+  if (!url || !method) return Promise.reject();
   // health check
-  const timeoutMillisec = config.timeout_millisec;
+  const timeoutMillisec = item.timeout_millisec;
   const site = new Site(method, url);
   const status = await site.getStatus(timeoutMillisec);
 
@@ -26,11 +22,16 @@ exports.handle = async (e: any, ctx: any, cb: Function) => {
     const slack = new Slack(webhookUrl, channel, username, iconEmoji);
     if (!status.isSucceeded() || notifyOnSuccess) await slack.notifySlack(status, mentionTargets);
   }
-
-  // callback
-  const obj = {
+  return {
+    method: status.site.method,
+    url: status.site.getUrl(),
     is_ok: status.isSucceeded(),
     status_code: status.statusCode
   };
-  cb(null, obj);
+}
+
+exports.handle = async (e: any, ctx: any, cb: Function) => {
+  const tasks = config.items.map(item => handle(item));
+  const results = await Promise.all(tasks);
+  cb(null, { results });
 };
