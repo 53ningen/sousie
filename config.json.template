@@ -1,6 +1,24 @@
 {
-  "url": "https://example.com",
-  "slack_webhook_url": "https://hooks.slack.com/services/xxxxxx/xxxxxxxxx/XXXXXXXXXXX",
-  "slack_notification_channel": "#random",
-  "slack_notification_username": "Soucie"
+  "items": [
+    {
+      "method": "GET",
+      "url": "http://example.com",
+      "timeout_millisec": 3000,
+    },
+    {
+      "method": "GET",
+      "url": "https://example.com",
+      "timeout_millisec": 3000,
+    }
+  ],
+  "slack": {
+    "notify-on-success": true,
+    "webhook_url": "https://hooks.slack.com/services/xxxxxx/xxxxxxxxx/XXXXXXXXXXX",
+    "channel": "#random",
+    "username": "Soucie Health Checker",
+    "icon_emoji": ":bell:",
+    "mention_targets": [
+      "!channel"
+    ]
+  }
 }

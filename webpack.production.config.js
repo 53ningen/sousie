@@ -7,16 +7,14 @@ const src = path.resolve('./src');
 const dist = path.resolve('./functions');
 
 module.exports = {
+  target: 'node',
   entry: {
-    'alive/index': [path.join(src, 'alive/index.js')]
+    'alive/index': [path.join(src, 'index.js')]
   },
   output: {
     libraryTarget: 'umd',
     path: dist,
     filename: '[name].js'
-  },
-  externals: {
-    https: 'https'
   },
   resolve: {
     modules: [src, 'node_modules'],

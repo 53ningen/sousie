@@ -1,6 +1,6 @@
 {
   "name": "soucie",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Website health checker working on AWS Lambda",
   "main": "index.js",
   "author": "gomi_ningen",
@@ -9,9 +9,10 @@
   "scripts": {
     "test": "npm run prettier && npm run eslint && npm run jest",
     "jest": "jest",
-    "build": "npm run build:webpack",
-    "build:prod": "NODE_ENV=production npm run build",
-    "build:webpack": "webpack",
+    "build": "npm run webpack",
+    "build:prod": "NODE_ENV=production npm run webpack:prod",
+    "webpack": "webpack",
+    "webpack:prod": "webpack --config webpack.production.config.js",
     "eslint": "eslint './src/**/*.js'",
     "prettier": "prettier --print-width 200 --single-quote --write './src/**/*.js'"
   },
@@ -35,8 +36,7 @@
     "jest": "^22.1.2",
     "prettier": "^1.10.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
-    "webpack": "^3.10.0",
-    "webpack-node-externals": "^1.6.0"
+    "webpack": "^3.10.0"
   },
   "dependencies": {
     "request": "^2.83.0",

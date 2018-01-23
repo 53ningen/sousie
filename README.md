@@ -30,17 +30,48 @@ See [official document](http://apex.run/#installation)
 curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh
 ```
 
-### Clone and configure
+### Clone
 
 ```
 # git clone
 git clone git@github.com:53ningen/sousie.git
 cd sousie
-
-# configure
-cp ./config.json.template ./config.json
-vi ./config.json #=> set helth check target url
 ```
+
+## Config
+### Configure IAM Role
+
+Copy `project.json.template` to `project.json`
+
+```
+cp ./project.json.template ./project.json
+```
+
+place your IAM Role into `role`
+
+```
+"role": "arn:aws:iam::***********:role/example",
+```
+
+### Configure application
+
+Copy `config.json.template` to `config.json` and edit it
+
+```
+cp ./config.json.template ./config.json
+```
+
+* `items`(array): health check target items
+  * `method`(string): `GET`, `POST`, `PUT`, `DELETE`, `HEAD`...
+  * `url`(string): health check target url
+  * `timeout_millisec`(number): request timeout (ms)
+* `slack`(object, optional)
+  * `notify-on-success`(boolean): enable success notification
+  * `webhook_url`(string): slack incomming webhook url
+  * `channel`(string): notification target channel (ex: `#random`)
+  * `username`(string): username of slack notification
+  * `icon_emoji`(string): user icon of slack notification
+  * `mention_targets`(array): if you want to receive mention, place the account of slack
 
 ## Deploy
 
@@ -64,7 +95,7 @@ yarn test
 
 ## Author
 
-gomi_ningen ( @53ningen )
+gomi_ningen ([@53ningen](https://github.com/53ningen))
 
 ## License
 
@@ -72,4 +103,4 @@ MIT
 
 ## Special Thanks
 
-Queen Susie Ernea Ortlinde
+Queen Soucie Elnea Ortlinde

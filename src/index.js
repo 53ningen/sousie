@@ -4,35 +4,34 @@ import Site from './Site';
 import Slack from './Slack';
 import config from '../config.json';
 
-const targetUrl: ?string = config.url;
-const slackChannel: ?string = config.slack_notification_channel;
-const slackUsername: ?string = config.slack_notification_username;
+async function handle(item: Object): Promise<Object> {
+  const { method, url } = item;
+  if (!url || !method) return Promise.reject();
+  // health check
+  const timeoutMillisec = item.timeout_millisec;
+  const site = new Site(method, url);
+  const status = await site.getStatus(timeoutMillisec);
 
-async function notifySlack() {
-  const slackWebhookUrl: ?string = config.slack_webhook_url;
-  if (!slackWebhookUrl) return;
-  const slack = new Slack(slackWebhookUrl);
-  await slack.post(slackChannel || '#random', slackUsername || 'Soucie Health Checker', 'health check failed');
+  // slack notification
+  const notifyOnSuccess = config.slack['notify-on-success'] === true;
+  const webhookUrl = config.slack.webhook_url;
+  const iconEmoji = config.slack.icon_emoji;
+  const mentionTargets = config.slack.mention_targets;
+  const { channel, username } = config.slack;
+  if (url && channel && username) {
+    const slack = new Slack(webhookUrl, channel, username, iconEmoji);
+    if (!status.isSucceeded() || notifyOnSuccess) await slack.notifySlack(status, mentionTargets);
+  }
+  return {
+    method: status.site.method,
+    url: status.site.getUrl(),
+    is_ok: status.isSucceeded(),
+    status_code: status.statusCode
+  };
 }
 
 exports.handle = async (e: any, ctx: any, cb: Function) => {
-  if (!targetUrl) {
-    cb(null, { is_ok: false, message: 'TARGET_URL is not set.' });
-    return;
-  }
-  try {
-    const site = new Site(targetUrl);
-    const status = await site.getStatus();
-    const obj = {
-      is_ok: status.isSucceeded(),
-      status_code: status.statusCode,
-      response_millisec: status.responsems,
-      message: status.statusMessage
-    };
-    cb(null, obj);
-  } catch (err) {
-    console.log(err);
-    await notifySlack();
-    cb(null, { is_ok: false, message: err.message });
-  }
+  const tasks = config.items.map(item => handle(item));
+  const results = await Promise.all(tasks);
+  cb(null, { results });
 };
