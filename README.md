@@ -61,6 +61,7 @@ Copy `config.json.template` to `config.json` and edit it
 cp ./config.json.template ./config.json
 ```
 
+* `user-agent`(string): User-Agent header
 * `items`(array): health check target items
   * `method`(string): `GET`, `POST`, `PUT`, `DELETE`, `HEAD`...
   * `url`(string): health check target url

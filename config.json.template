@@ -1,4 +1,5 @@
 {
+  "user-agent": "Mozilla/5.0 (Soucie Health Checker;)",
   "items": [
     {
       "method": "GET",

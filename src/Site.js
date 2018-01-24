@@ -4,6 +4,8 @@ import URL from 'url';
 import request from 'request-promise-native';
 import SiteStatus from './SiteStatus';
 
+const defaultUserAgent = 'Mozilla/5.0 (Soucie Health Checker;)';
+
 export default class Site {
   method: string;
   protocol: string;
@@ -11,13 +13,15 @@ export default class Site {
   port: number;
   path: string;
   hash: ?string;
+  options: { userAgent: string };
 
-  constructor(method: string, url: string, port: ?number = null) {
+  constructor(method: string, url: string, port: ?number = null, options: ?{ userAgent: string } = null) {
     const u = URL.parse(url);
     this.method = method;
     this.protocol = u.protocol || '';
     this.hostname = u.hostname || '';
     this.port = port || (u.protocol === 'https:' ? 443 : 80);
+    this.options = options || { userAgent: defaultUserAgent };
     this.path = u.path || '/';
     this.hash = u.hash;
   }
@@ -34,6 +38,9 @@ export default class Site {
       method: this.method,
       uri: this.getUrl(),
       timeout: timeoutMillisec,
+      headers: {
+        'User-Agent': this.options.userAgent || defaultUserAgent
+      },
       resolveWithFullResponse: true
     };
     try {
