@@ -5,13 +5,13 @@ import Slack from './Slack';
 import config from '../config.json';
 
 async function handle(item: Object): Promise<Object> {
-  const { method, url } = item;
+  const { method, url, port } = item;
   if (!url || !method) return Promise.reject();
 
   // health check
   const userAgent = config['user-agent'];
   const timeoutMillisec = item.timeout_millisec;
-  const site = new Site(method, url, null, { userAgent });
+  const site = new Site(method, url, port, { userAgent });
   const status = await site.getStatus(timeoutMillisec);
 
   // slack notification

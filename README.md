@@ -65,6 +65,7 @@ cp ./config.json.template ./config.json
 * `items`(array): health check target items
   * `method`(string): `GET`, `POST`, `PUT`, `DELETE`, `HEAD`...
   * `url`(string): health check target url
+  * `port`(number): health check target port
   * `timeout_millisec`(number): request timeout (ms)
 * `slack`(object, optional)
   * `notify-on-success`(boolean): enable success notification
