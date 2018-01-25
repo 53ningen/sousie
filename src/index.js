@@ -5,14 +5,14 @@ import Slack from './Slack';
 import config from '../config.json';
 
 async function handle(item: Object): Promise<Object> {
-  const { method, url, port } = item;
+  const { method, url, port, retry } = item;
   if (!url || !method) return Promise.reject();
 
   // health check
   const userAgent = config['user-agent'];
-  const timeoutMillisec = item.timeout_millisec;
+  const timeoutMillisec = item.timeout_millisec || 3000;
   const site = new Site(method, url, port, { userAgent });
-  const status = await site.getStatus(timeoutMillisec);
+  const status = await site.getStatus(timeoutMillisec, retry || 0);
 
   // slack notification
   const notifyOnSuccess = config.slack['notify-on-success'] === true;
