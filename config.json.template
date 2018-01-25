@@ -1,13 +1,16 @@
 {
+  "user-agent": "Mozilla/5.0 (Soucie Health Checker;)",
   "items": [
     {
       "method": "GET",
       "url": "http://example.com",
+      "port": 80,
       "timeout_millisec": 3000,
     },
     {
       "method": "GET",
       "url": "https://example.com",
+      "port": 443,
       "timeout_millisec": 3000,
     }
   ],

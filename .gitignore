@@ -1,4 +1,6 @@
 node_modules/
 project.json
 functions/
-config.json
+config.json*
+!config.json.template
+
