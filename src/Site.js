@@ -32,7 +32,26 @@ export default class Site {
     return `${this.protocol}//${this.hostname}${port}${this.path}${this.hash || ''}`;
   }
 
-  async getStatus(timeoutMillisec: number = 5000): Promise<SiteStatus> {
+  async getStatus(timeoutMillisec: number = 5000, retryCount: number = 0): Promise<SiteStatus> {
+    const status = new SiteStatus(this);
+    try {
+      return await this.fetchStatus(timeoutMillisec);
+    } catch (err) {
+      console.log(JSON.stringify(err));
+      if (retryCount > 0) {
+        return this.getStatus(timeoutMillisec, retryCount - 1);
+      }
+      if (err.response) {
+        status.statusCode = err.response.statusCode;
+        status.message = err.response.statusMessage;
+      } else {
+        status.message = err.message;
+      }
+      return status;
+    }
+  }
+
+  async fetchStatus(timeoutMillisec: number = 5000) {
     const status = new SiteStatus(this);
     const options = {
       method: this.method,
@@ -43,20 +62,9 @@ export default class Site {
       },
       resolveWithFullResponse: true
     };
-    try {
-      const { statusCode, statusMessage } = await request(options);
-      status.statusCode = statusCode;
-      status.message = statusMessage;
-      return status;
-    } catch (err) {
-      console.log(JSON.stringify(err));
-      if (err.response) {
-        status.statusCode = err.response.statusCode;
-        status.message = err.response.statusMessage;
-      } else {
-        status.message = err.message;
-      }
-      return status;
-    }
+    const { statusCode, statusMessage } = await request(options);
+    status.statusCode = statusCode;
+    status.message = statusMessage;
+    return status;
   }
 }
