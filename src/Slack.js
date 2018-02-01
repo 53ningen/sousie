@@ -76,9 +76,14 @@ export default class Slack {
             short: true
           },
           {
+            title: 'response_time(msec)',
+            value: status.responseTime || '-',
+            short: true
+          },
+          {
             title: 'message',
             value: status.message || '-',
-            short: false
+            short: true
           }
         ]
       }
