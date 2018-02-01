@@ -3,4 +3,5 @@ project.json
 functions/
 config.json*
 !config.json.template
+.vscode/
 

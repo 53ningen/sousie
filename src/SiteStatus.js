@@ -7,6 +7,7 @@ export default class SiteStatus {
   url: string;
   statusCode: ?number;
   message: ?string;
+  responseTime: ?number;
 
   constructor(site: Site) {
     this.site = site;

@@ -62,7 +62,9 @@ export default class Site {
       },
       resolveWithFullResponse: true
     };
+    const start = new Date();
     const { statusCode, statusMessage } = await request(options);
+    status.responseTime = new Date() - start;
     status.statusCode = statusCode;
     status.message = statusMessage;
     return status;
