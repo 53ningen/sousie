@@ -38,7 +38,8 @@ export default class Site {
       return await this.fetchStatus(timeoutMillisec);
     } catch (err) {
       console.log(JSON.stringify(err));
-      if (retryCount > 0) {
+      const isTimeout = err && err.error && err.error.code === 'ESOCKETTIMEDOUT';
+      if (isTimeout && retryCount > 0) {
         return this.getStatus(timeoutMillisec, retryCount - 1);
       }
       if (err.response) {
