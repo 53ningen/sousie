@@ -58,11 +58,11 @@ export default class Slack {
       {
         color: this.getColor(status),
         title: this.getMessage(status),
-        title_link: status.site.getUrl(),
+        title_link: status.site.url,
         fields: [
           {
             title: 'target_url',
-            value: status.site.getUrl(),
+            value: status.site.url,
             short: false
           },
           {

@@ -26,7 +26,7 @@ export default class Site {
     this.hash = u.hash;
   }
 
-  getUrl(): string {
+  get url(): string {
     const isDefaultPort = (this.protocol === 'http:' && this.port === 80) || (this.protocol === 'https:' && this.port === 443);
     const port = isDefaultPort ? '' : `:${this.port}`;
     return `${this.protocol}//${this.hostname}${port}${this.path}${this.hash || ''}`;
@@ -56,7 +56,7 @@ export default class Site {
     const status = new SiteStatus(this);
     const options = {
       method: this.method,
-      uri: this.getUrl(),
+      uri: this.url,
       timeout: timeoutMillisec,
       headers: {
         'User-Agent': this.options.userAgent || defaultUserAgent
