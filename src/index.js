@@ -26,7 +26,7 @@ async function handle(item: Object): Promise<Object> {
   }
   return {
     method: status.site.method,
-    url: status.site.getUrl(),
+    url: status.site.url,
     is_ok: status.isSucceeded(),
     status_code: status.statusCode,
     response_time: status.responseTime

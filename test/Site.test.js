@@ -10,7 +10,7 @@ describe('Site', () => {
     expect(site.path).toBe('/');
     expect(site.hash).toBeNull();
     expect(site.options.userAgent).toBe('Mozilla/5.0 (Soucie Health Checker;)');
-    expect(site.getUrl()).toBe('https://example.com/');
+    expect(site.url).toBe('https://example.com/');
   });
   test('properties: http endpoint', () => {
     const site = new Site('GET', 'http://example.com');
@@ -21,7 +21,7 @@ describe('Site', () => {
     expect(site.path).toBe('/');
     expect(site.hash).toBeNull();
     expect(site.options.userAgent).toBe('Mozilla/5.0 (Soucie Health Checker;)');
-    expect(site.getUrl()).toBe('http://example.com/');
+    expect(site.url).toBe('http://example.com/');
   });
   test('properties: http endpoint with port', () => {
     const site = new Site('GET', 'http://example.com', 8080);
@@ -32,7 +32,7 @@ describe('Site', () => {
     expect(site.path).toBe('/');
     expect(site.hash).toBeNull();
     expect(site.options.userAgent).toBe('Mozilla/5.0 (Soucie Health Checker;)');
-    expect(site.getUrl()).toBe('http://example.com:8080/');
+    expect(site.url).toBe('http://example.com:8080/');
   });
   test('custom user agent', () => {
     const customUserAgent = 'Mozilla/5.0 (CustomHeader)';
@@ -44,6 +44,6 @@ describe('Site', () => {
     expect(site.path).toBe('/');
     expect(site.hash).toBeNull();
     expect(site.options.userAgent).toBe(customUserAgent);
-    expect(site.getUrl()).toBe('http://example.com:8080/');
+    expect(site.url).toBe('http://example.com:8080/');
   });
 });
